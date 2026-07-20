@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RT-Handwerksdesign GbR — Handwerk mit Präzision</title>
+<meta name="description" content="RT-Handwerksdesign GbR — Garten-, Möbel- und Renovierungsarbeiten in Darmstadt. Sauber. Zuverlässig. Termingerecht.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800;900&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#eef1ec;
+    --paper-2:#e4e9e1;
+    --ink:#1c2622;
+    --ink-soft:#4a564f;
+    --blueprint:#22415a;
+    --blueprint-2:#1a3345;
+    --chalk-red:#bd3d1e;
+    --tape-yellow:#e3ad2c;
+    --line: rgba(28,38,34,0.16);
+    --line-on-blue: rgba(255,255,255,0.18);
+    --radius: 2px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Big Shoulders Display', sans-serif;
+    font-weight:800;
+    text-transform:uppercase;
+    letter-spacing:0.01em;
+    margin:0;
+    line-height:0.92;
+  }
+  .mono{font-family:'IBM Plex Mono', monospace;}
+  a{color:inherit;}
+  .wrap{max-width:1160px; margin:0 auto; padding:0 28px;}
+  @media (max-width:640px){ .wrap{padding:0 18px;} }
+
+  /* ---------- header ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:var(--paper);
+    border-bottom:2px solid var(--ink);
+  }
+  .header-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 0;
+  }
+  .brand{display:flex; align-items:center; gap:12px; text-decoration:none;}
+  .brand-stamp{
+    width:44px; height:44px; border:2.5px solid var(--ink);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Big Shoulders Display'; font-weight:900; font-size:20px;
+    transform:rotate(-2deg);
+    flex-shrink:0;
+  }
+  .brand-name{font-family:'IBM Plex Mono'; font-weight:600; font-size:13px; letter-spacing:0.03em; text-transform:uppercase;}
+  .brand-name span{display:block; font-size:11px; color:var(--ink-soft); font-weight:400; letter-spacing:0.02em;}
+  nav{display:flex; align-items:center; gap:22px;}
+  nav a.navlink{
+    font-family:'IBM Plex Mono'; font-size:12.5px; text-transform:uppercase; letter-spacing:0.04em;
+    text-decoration:none; border-bottom:2px solid transparent; padding-bottom:2px;
+  }
+  nav a.navlink:hover{border-color:var(--chalk-red);}
+  .lang-toggle{
+    display:flex; border:2px solid var(--ink); font-family:'IBM Plex Mono'; font-size:12px; font-weight:600;
+  }
+  .lang-toggle button{
+    background:none; border:none; padding:6px 10px; cursor:pointer; color:var(--ink);
+    font-family:'IBM Plex Mono'; font-weight:600; letter-spacing:0.03em;
+  }
+  .lang-toggle button.active{ background:var(--ink); color:var(--paper);}
+  .call-btn{
+    display:none;
+  }
+  @media (max-width:780px){
+    nav a.navlink{display:none;}
+  }
+
+  /* ---------- hero ---------- */
+  .hero{
+    background:
+      linear-gradient(var(--line-on-blue),var(--line-on-blue)) 0 0/100% 1px,
+      var(--blueprint);
+    background-image:
+      repeating-linear-gradient(0deg, var(--line-on-blue) 0 1px, transparent 1px 40px),
+      repeating-linear-gradient(90deg, var(--line-on-blue) 0 1px, transparent 1px 40px),
+      radial-gradient(ellipse at 75% 20%, #2a5170, var(--blueprint) 60%);
+    color:var(--paper);
+    padding:88px 0 64px;
+    position:relative;
+    overflow:hidden;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono'; font-size:12.5px; letter-spacing:0.12em; text-transform:uppercase;
+    color:var(--tape-yellow); display:flex; align-items:center; gap:10px; margin-bottom:18px;
+  }
+  .eyebrow::before{content:""; width:26px; height:2px; background:var(--tape-yellow); display:inline-block;}
+  .hero h1{
+    font-size:clamp(46px, 8vw, 96px);
+    max-width:820px;
+  }
+  .hero-sub{
+    font-size:17px; max-width:520px; margin:24px 0 34px; color:#dbe4e9; line-height:1.55;
+  }
+  .hero-ctas{display:flex; gap:14px; flex-wrap:wrap; margin-bottom:46px;}
+  .btn{
+    font-family:'IBM Plex Mono'; font-weight:600; font-size:13px; letter-spacing:0.03em; text-transform:uppercase;
+    padding:14px 22px; text-decoration:none; display:inline-flex; align-items:center; gap:10px;
+    border:2px solid currentColor; transition:transform .15s ease;
+  }
+  .btn:hover{transform:translate(-2px,-2px);}
+  .btn-primary{background:var(--tape-yellow); color:var(--ink); border-color:var(--tape-yellow);}
+  .btn-ghost{color:var(--paper);}
+  .hero-meta{
+    display:flex; gap:34px; flex-wrap:wrap; border-top:1px solid var(--line-on-blue); padding-top:22px;
+  }
+  .hero-meta .stat{font-family:'IBM Plex Mono';}
+  .hero-meta .stat b{display:block; font-size:26px; color:var(--tape-yellow);}
+  .hero-meta .stat span{font-size:11.5px; color:#b9c9d2; text-transform:uppercase; letter-spacing:0.04em;}
+
+  /* ---------- ruler divider ---------- */
+  .ruler{
+    background:var(--paper); border-bottom:2px solid var(--ink); position:relative;
+    padding:0;
+  }
+  .ruler-track{
+    display:flex; overflow-x:auto; scrollbar-width:none;
+  }
+  .ruler-track::-webkit-scrollbar{display:none;}
+  .ruler-tick{
+    flex:0 0 auto; min-width:130px; padding:20px 18px; border-right:1px solid var(--line);
+    display:flex; flex-direction:column; gap:6px;
+  }
+  .ruler-tick .num{font-family:'Big Shoulders Display'; font-weight:900; font-size:34px; color:var(--chalk-red);}
+  .ruler-tick .lbl{font-family:'IBM Plex Mono'; font-size:11px; text-transform:uppercase; letter-spacing:0.04em; color:var(--ink-soft);}
+
+  /* ---------- sections ---------- */
+  section{padding:76px 0;}
+  .section-head{display:flex; align-items:flex-end; justify-content:space-between; gap:24px; margin-bottom:44px; flex-wrap:wrap;}
+  .section-head h2{font-size:clamp(32px,5vw,52px);}
+  .section-num{font-family:'IBM Plex Mono'; color:var(--chalk-red); font-weight:600; font-size:13px;}
+  .section-desc{max-width:480px; color:var(--ink-soft); font-size:15px; line-height:1.6;}
+
+  /* services */
+  .services{background:var(--paper-2); border-top:2px solid var(--ink); border-bottom:2px solid var(--ink);}
+  .service-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--ink); border:2px solid var(--ink);}
+  @media (max-width:780px){.service-grid{grid-template-columns:1fr;}}
+  .service-card{background:var(--paper-2); padding:32px; position:relative;}
+  .service-tag{
+    font-family:'IBM Plex Mono'; font-size:11px; letter-spacing:0.06em; text-transform:uppercase;
+    background:var(--ink); color:var(--paper); padding:3px 8px; display:inline-block; margin-bottom:16px;
+  }
+  .service-card h3{font-size:26px; margin-bottom:10px;}
+  .service-card p{color:var(--ink-soft); font-size:14.5px; line-height:1.6; margin:0;}
+
+  /* reviews */
+  .review-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+  @media (max-width:900px){.review-grid{grid-template-columns:1fr;}}
+  .review-card{
+    border:2px solid var(--ink); padding:24px; background:var(--paper);
+    display:flex; flex-direction:column; gap:14px;
+  }
+  .review-stars{color:var(--tape-yellow); font-size:15px; letter-spacing:2px;}
+  .review-quote{font-size:15px; line-height:1.6; color:var(--ink); flex-grow:1;}
+  .review-name{font-family:'IBM Plex Mono'; font-size:12px; text-transform:uppercase; letter-spacing:0.03em; color:var(--ink-soft); border-top:1px solid var(--line); padding-top:12px;}
+
+  /* about */
+  .about{display:grid; grid-template-columns:1.1fr 0.9fr; gap:56px; align-items:start;}
+  @media (max-width:860px){.about{grid-template-columns:1fr;}}
+  .about-text p{font-size:15.5px; line-height:1.7; color:var(--ink-soft); margin:0 0 16px;}
+  .hours-card{border:2px solid var(--ink); padding:24px;}
+  .hours-card h3{font-size:20px; margin-bottom:16px;}
+  .hours-row{display:flex; justify-content:space-between; font-family:'IBM Plex Mono'; font-size:13px; padding:8px 0; border-bottom:1px solid var(--line);}
+  .hours-row:last-child{border-bottom:none;}
+  .hours-row.today{color:var(--chalk-red); font-weight:600;}
+
+  /* contact */
+  .contact{background:var(--blueprint); color:var(--paper);}
+  .contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:40px;}
+  @media (max-width:780px){.contact-grid{grid-template-columns:1fr;}}
+  .contact-item{border-top:1px solid var(--line-on-blue); padding-top:16px; margin-bottom:22px;}
+  .contact-item .k{font-family:'IBM Plex Mono'; font-size:11.5px; text-transform:uppercase; letter-spacing:0.05em; color:var(--tape-yellow); margin-bottom:6px;}
+  .contact-item .v{font-size:18px;}
+  .contact-item a{text-decoration:none; border-bottom:1px solid var(--line-on-blue);}
+
+  footer{
+    background:var(--ink); color:var(--paper); padding:26px 0; font-family:'IBM Plex Mono'; font-size:12px;
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
+  }
+  footer .fine{color:#8b968f;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap header-inner">
+    <a href="#top" class="brand">
+      <div class="brand-stamp">RT</div>
+      <div class="brand-name">RT-Handwerksdesign<span data-i18n="brand.sub">Handwerk mit Präzision</span></div>
+    </a>
+    <nav>
+      <a class="navlink" href="#leistungen" data-i18n="nav.services">Leistungen</a>
+      <a class="navlink" href="#bewertungen" data-i18n="nav.reviews">Bewertungen</a>
+      <a class="navlink" href="#ueber-uns" data-i18n="nav.about">Über uns</a>
+      <a class="navlink" href="#kontakt" data-i18n="nav.contact">Kontakt</a>
+      <div class="lang-toggle">
+        <button id="btn-de" class="active" onclick="setLang('de')">DE</button>
+        <button id="btn-en" onclick="setLang('en')">EN</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <!-- HERO -->
+  <section class="hero" style="padding-top:88px;">
+    <div class="wrap">
+      <div class="eyebrow" data-i18n="hero.eyebrow">Darmstadt-Ost &nbsp;·&nbsp; Baufirma &amp; Handwerk</div>
+      <h1 data-i18n="hero.h1">Präzision,<br>die man&nbsp;sieht.</h1>
+      <p class="hero-sub" data-i18n="hero.sub">Garten-, Möbel- und Renovierungsarbeiten aus Darmstadt. Wir planen, bauen und montieren — sauber, termintreu und mit dem Auge fürs Detail.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="tel:01631562651" data-i18n="hero.cta.call">Jetzt anrufen</a>
+        <a class="btn btn-ghost" href="#kontakt" data-i18n="hero.cta.quote">Angebot anfragen</a>
+      </div>
+      <div class="hero-meta">
+        <div class="stat"><b>5.0</b><span data-i18n="hero.meta.rating">Google-Bewertung</span></div>
+        <div class="stat"><b>4</b><span data-i18n="hero.meta.reviews">Rezensionen</span></div>
+        <div class="stat"><b>7:00</b><span data-i18n="hero.meta.open">Werkstattbeginn</span></div>
+        <div class="stat"><b>GbR</b><span data-i18n="hero.meta.form">Rechtsform</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RULER -->
+  <div class="ruler">
+    <div class="ruler-track wrap" style="padding:0 28px;">
+      <div class="ruler-tick"><div class="num">01</div><div class="lbl" data-i18n="ruler.plan">Aufmaß &amp; Planung</div></div>
+      <div class="ruler-tick"><div class="num">02</div><div class="lbl" data-i18n="ruler.offer">Festpreisangebot</div></div>
+      <div class="ruler-tick"><div class="num">03</div><div class="lbl" data-i18n="ruler.build">Ausführung</div></div>
+      <div class="ruler-tick"><div class="num">04</div><div class="lbl" data-i18n="ruler.check">Abnahme</div></div>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <section class="services" id="leistungen">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="section-num">§ Leistungen</div>
+          <h2 data-i18n="services.h2">Was wir bauen</h2>
+        </div>
+        <p class="section-desc" data-i18n="services.desc">Von der Gartenumgestaltung bis zum Einbauschrank — ein Team, ein Ansprechpartner, ein Termin.</p>
+      </div>
+      <div class="service-grid">
+        <div class="service-card">
+          <span class="service-tag" data-i18n="svc.1.tag">01 — Garten</span>
+          <h3 data-i18n="svc.1.h">Garten- &amp; Außenanlagen</h3>
+          <p data-i18n="svc.1.p">Terrassen, Wege, Zäune und Bepflanzung — geplant und gebaut aus einer Hand, bis zur letzten Fuge.</p>
+        </div>
+        <div class="service-card">
+          <span class="service-tag" data-i18n="svc.2.tag">02 — Möbelbau</span>
+          <h3 data-i18n="svc.2.h">Einbaumöbel &amp; Schreinerarbeiten</h3>
+          <p data-i18n="svc.2.p">Maßgefertigte Schränke, Regale und Küchenelemente — exakt vermessen, sauber montiert.</p>
+        </div>
+        <div class="service-card">
+          <span class="service-tag" data-i18n="svc.3.tag">03 — Renovierung</span>
+          <h3 data-i18n="svc.3.h">Renovierung &amp; Sanierung</h3>
+          <p data-i18n="svc.3.p">Von der Einzelmaßnahme bis zur Komplettsanierung — wir koordinieren jedes Gewerk.</p>
+        </div>
+        <div class="service-card">
+          <span class="service-tag" data-i18n="svc.4.tag">04 — Allgemein</span>
+          <h3 data-i18n="svc.4.h">Handwerksarbeiten aller Art</h3>
+          <p data-i18n="svc.4.p">Reparaturen, Montagen und kurzfristige Einsätze — auch spontan, wenn es schnell gehen muss.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section id="bewertungen">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="section-num">§ Referenzen</div>
+          <h2 data-i18n="reviews.h2">Was Kunden sagen</h2>
+        </div>
+        <p class="section-desc" data-i18n="reviews.desc">Echte Google-Bewertungen von Kunden aus Darmstadt und Umgebung.</p>
+      </div>
+      <div class="review-grid">
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-quote" data-i18n="rev.1.q">Ein Kunde lobt die hervorragende Arbeit im Garten und die kurzfristig organisierte Montage eines Schranks.</p>
+          <div class="review-name">Marc A.</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-quote" data-i18n="rev.2.q">Professioneller und kompetenter Service, dazu ein freundliches und hilfsbereites Team — vorbehaltlose Empfehlung.</p>
+          <div class="review-name">Samantha T.</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-quote" data-i18n="rev.3.q">Freundlich, zuverlässig und sauber gearbeitet — sofort spürbar, dass hier mit Sorgfalt gearbeitet wird.</p>
+          <div class="review-name">Frauke W.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="ueber-uns" style="background:var(--paper-2); border-top:2px solid var(--ink); border-bottom:2px solid var(--ink);">
+    <div class="wrap about">
+      <div class="about-text">
+        <div class="section-num" style="margin-bottom:14px;">§ Über uns</div>
+        <h2 style="margin-bottom:20px; font-size:clamp(28px,4vw,40px);" data-i18n="about.h2">Handwerk als Handschrift</h2>
+        <p data-i18n="about.p1">RT-Handwerksdesign GbR ist ein Handwerksbetrieb aus Darmstadt-Ost. Wir verbinden solides Handwerk mit einem Blick für Gestaltung — jedes Projekt wird geplant wie ein Bauplan und ausgeführt wie ein Möbelstück.</p>
+        <p data-i18n="about.p2">Ob Gartenprojekt, Einbauschrank oder Renovierung: Wir messen genau, kalkulieren transparent und liefern, was wir versprechen.</p>
+      </div>
+      <div class="hours-card">
+        <h3 data-i18n="about.hours.h">Öffnungszeiten</h3>
+        <div class="hours-row today"><span data-i18n="hours.mon">Montag</span><span>7:00 – 17:00</span></div>
+        <div class="hours-row"><span data-i18n="hours.tue">Dienstag</span><span>7:00 – 17:00</span></div>
+        <div class="hours-row"><span data-i18n="hours.wed">Mittwoch</span><span>7:00 – 17:00</span></div>
+        <div class="hours-row"><span data-i18n="hours.thu">Donnerstag</span><span>7:00 – 17:00</span></div>
+        <div class="hours-row"><span data-i18n="hours.fri">Freitag</span><span>7:00 – 16:00</span></div>
+        <div class="hours-row"><span data-i18n="hours.sat">Samstag</span><span data-i18n="hours.byappt">Nach Vereinbarung</span></div>
+        <div class="hours-row"><span data-i18n="hours.sun">Sonntag</span><span data-i18n="hours.closed">Geschlossen</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="kontakt">
+    <div class="wrap">
+      <div class="section-head" style="border-color:var(--line-on-blue);">
+        <div>
+          <div class="section-num" style="color:var(--tape-yellow);">§ Kontakt</div>
+          <h2 data-i18n="contact.h2">Projekt anfragen</h2>
+        </div>
+        <p class="section-desc" style="color:#c9d6dc;" data-i18n="contact.desc">Rufen Sie an oder schreiben Sie kurz, worum es geht — wir melden uns zeitnah zurück.</p>
+      </div>
+      <div class="contact-grid">
+        <div>
+          <div class="contact-item">
+            <div class="k" data-i18n="contact.address">Adresse</div>
+            <div class="v">Dieburger Str. 19, 64287 Darmstadt-Ost</div>
+          </div>
+          <div class="contact-item">
+            <div class="k" data-i18n="contact.phone">Telefon</div>
+            <div class="v"><a href="tel:01631562651">0163 1562651</a></div>
+          </div>
+        </div>
+        <div>
+          <div class="contact-item">
+            <div class="k" data-i18n="contact.web">Website</div>
+            <div class="v"><a href="https://rt-handwerksdesign.de" target="_blank" rel="noopener">rt-handwerksdesign.de</a></div>
+          </div>
+          <div class="contact-item">
+            <div class="k" data-i18n="contact.hours2">Nächster Werkstattstart</div>
+            <div class="v" data-i18n="contact.hours2v">Dienstag, 7:00 Uhr</div>
+          </div>
+        </div>
+      </div>
+      <a class="btn btn-primary" href="tel:01631562651" data-i18n="contact.cta">Jetzt anrufen</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap" style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; width:100%;">
+    <span>© <span id="year"></span> RT-Handwerksdesign GbR</span>
+    <span class="fine" data-i18n="footer.note">Dieburger Str. 19 · 64287 Darmstadt-Ost</span>
+  </div>
+</footer>
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+
+const i18n = {
+  de: {
+    "brand.sub":"Handwerk mit Präzision",
+    "nav.services":"Leistungen","nav.reviews":"Bewertungen","nav.about":"Über uns","nav.contact":"Kontakt",
+    "hero.eyebrow":"Darmstadt-Ost · Baufirma & Handwerk",
+    "hero.h1":"Präzision,<br>die man&nbsp;sieht.",
+    "hero.sub":"Garten-, Möbel- und Renovierungsarbeiten aus Darmstadt. Wir planen, bauen und montieren — sauber, termintreu und mit dem Auge fürs Detail.",
+    "hero.cta.call":"Jetzt anrufen","hero.cta.quote":"Angebot anfragen",
+    "hero.meta.rating":"Google-Bewertung","hero.meta.reviews":"Rezensionen","hero.meta.open":"Werkstattbeginn","hero.meta.form":"Rechtsform",
+    "ruler.plan":"Aufmaß & Planung","ruler.offer":"Festpreisangebot","ruler.build":"Ausführung","ruler.check":"Abnahme",
+    "services.h2":"Was wir bauen","services.desc":"Von der Gartenumgestaltung bis zum Einbauschrank — ein Team, ein Ansprechpartner, ein Termin.",
+    "svc.1.tag":"01 — Garten","svc.1.h":"Garten- & Außenanlagen","svc.1.p":"Terrassen, Wege, Zäune und Bepflanzung — geplant und gebaut aus einer Hand, bis zur letzten Fuge.",
+    "svc.2.tag":"02 — Möbelbau","svc.2.h":"Einbaumöbel & Schreinerarbeiten","svc.2.p":"Maßgefertigte Schränke, Regale und Küchenelemente — exakt vermessen, sauber montiert.",
+    "svc.3.tag":"03 — Renovierung","svc.3.h":"Renovierung & Sanierung","svc.3.p":"Von der Einzelmaßnahme bis zur Komplettsanierung — wir koordinieren jedes Gewerk.",
+    "svc.4.tag":"04 — Allgemein","svc.4.h":"Handwerksarbeiten aller Art","svc.4.p":"Reparaturen, Montagen und kurzfristige Einsätze — auch spontan, wenn es schnell gehen muss.",
+    "reviews.h2":"Was Kunden sagen","reviews.desc":"Echte Google-Bewertungen von Kunden aus Darmstadt und Umgebung.",
+    "rev.1.q":"Ein Kunde lobt die hervorragende Arbeit im Garten und die kurzfristig organisierte Montage eines Schranks.",
+    "rev.2.q":"Professioneller und kompetenter Service, dazu ein freundliches und hilfsbereites Team — vorbehaltlose Empfehlung.",
+    "rev.3.q":"Freundlich, zuverlässig und sauber gearbeitet — sofort spürbar, dass hier mit Sorgfalt gearbeitet wird.",
+    "about.h2":"Handwerk als Handschrift",
+    "about.p1":"RT-Handwerksdesign GbR ist ein Handwerksbetrieb aus Darmstadt-Ost. Wir verbinden solides Handwerk mit einem Blick für Gestaltung — jedes Projekt wird geplant wie ein Bauplan und ausgeführt wie ein Möbelstück.",
+    "about.p2":"Ob Gartenprojekt, Einbauschrank oder Renovierung: Wir messen genau, kalkulieren transparent und liefern, was wir versprechen.",
+    "about.hours.h":"Öffnungszeiten",
+    "hours.mon":"Montag","hours.tue":"Dienstag","hours.wed":"Mittwoch","hours.thu":"Donnerstag","hours.fri":"Freitag","hours.sat":"Samstag","hours.sun":"Sonntag",
+    "hours.byappt":"Nach Vereinbarung","hours.closed":"Geschlossen",
+    "contact.h2":"Projekt anfragen","contact.desc":"Rufen Sie an oder schreiben Sie kurz, worum es geht — wir melden uns zeitnah zurück.",
+    "contact.address":"Adresse","contact.phone":"Telefon","contact.web":"Website","contact.hours2":"Nächster Werkstattstart","contact.hours2v":"Dienstag, 7:00 Uhr",
+    "contact.cta":"Jetzt anrufen",
+    "footer.note":"Dieburger Str. 19 · 64287 Darmstadt-Ost"
+  },
+  en: {
+    "brand.sub":"Craftsmanship with precision",
+    "nav.services":"Services","nav.reviews":"Reviews","nav.about":"About","nav.contact":"Contact",
+    "hero.eyebrow":"Darmstadt-East · Building & Craft Firm",
+    "hero.h1":"Precision,<br>you can&nbsp;see.",
+    "hero.sub":"Garden, joinery and renovation work based in Darmstadt. We plan, build and install — clean, on schedule, and with an eye for detail.",
+    "hero.cta.call":"Call now","hero.cta.quote":"Request a quote",
+    "hero.meta.rating":"Google rating","hero.meta.reviews":"Reviews","hero.meta.open":"Workshop opens","hero.meta.form":"Legal form",
+    "ruler.plan":"Survey & planning","ruler.offer":"Fixed-price quote","ruler.build":"Execution","ruler.check":"Handover",
+    "services.h2":"What we build","services.desc":"From garden makeovers to built-in cabinets — one team, one point of contact, one appointment.",
+    "svc.1.tag":"01 — Garden","svc.1.h":"Garden & outdoor spaces","svc.1.p":"Terraces, paths, fences and planting — designed and built by one team, down to the last joint.",
+    "svc.2.tag":"02 — Joinery","svc.2.h":"Built-in furniture & joinery","svc.2.p":"Custom cabinets, shelving and kitchen elements — measured precisely, fitted cleanly.",
+    "svc.3.tag":"03 — Renovation","svc.3.h":"Renovation & refurbishment","svc.3.p":"From single fixes to full refurbishments — we coordinate every trade involved.",
+    "svc.4.tag":"04 — General","svc.4.h":"All-round craftsmanship","svc.4.p":"Repairs, installations and short-notice jobs — even on short notice when speed matters.",
+    "reviews.h2":"What clients say","reviews.desc":"Genuine Google reviews from clients in and around Darmstadt.",
+    "rev.1.q":"A client praises the excellent garden work and the short-notice installation of a cabinet.",
+    "rev.2.q":"Professional and skilled service, with a friendly and helpful team — recommended without hesitation.",
+    "rev.3.q":"Friendly, reliable and clean work — it's immediately clear the team works with real care.",
+    "about.h2":"Craft as a signature",
+    "about.p1":"RT-Handwerksdesign GbR is a craft firm based in Darmstadt-East. We combine solid craftsmanship with an eye for design — every project is planned like a blueprint and finished like a piece of furniture.",
+    "about.p2":"Garden project, built-in cabinet or renovation: we measure precisely, quote transparently, and deliver what we promise.",
+    "about.hours.h":"Opening hours",
+    "hours.mon":"Monday","hours.tue":"Tuesday","hours.wed":"Wednesday","hours.thu":"Thursday","hours.fri":"Friday","hours.sat":"Saturday","hours.sun":"Sunday",
+    "hours.byappt":"By appointment","hours.closed":"Closed",
+    "contact.h2":"Request a project","contact.desc":"Call, or drop a short note about what you need — we'll get back to you promptly.",
+    "contact.address":"Address","contact.phone":"Phone","contact.web":"Website","contact.hours2":"Next workshop start","contact.hours2v":"Tuesday, 7:00 am",
+    "contact.cta":"Call now",
+    "footer.note":"Dieburger Str. 19 · 64287 Darmstadt-East"
+  }
+};
+
+function setLang(lang){
+  document.documentElement.lang = lang;
+  document.getElementById('btn-de').classList.toggle('active', lang==='de');
+  document.getElementById('btn-en').classList.toggle('active', lang==='en');
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key = el.getAttribute('data-i18n');
+    if(i18n[lang][key]) el.innerHTML = i18n[lang][key];
+  });
+  localStorage.setItem('rt-lang', lang);
+}
+
+const saved = localStorage.getItem('rt-lang');
+setLang(saved === 'en' ? 'en' : 'de');
+</script>
+
+</body>
+</html>
